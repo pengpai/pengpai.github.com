@@ -3,20 +3,9 @@ layout: default
 title: PENGPAI
 ---
 <div class="wrapper">
-	<header>
-		<h1>{{ page.title }}</h1>
-        <p></p>
-        <p class="view"><a href="https://github.com/pengpai">View My GitHub Profile</a></p>
-    </header>
-    <section>
-        {% for post in site.posts %}
-		<h3>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
-		{% endfor %}
-    </section>
-    <footer>
-      <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-    </footer>
-</div>
-<script src="javascripts/scale.fix.js"></script>
+{% for post in site.posts %}
+<h3>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
+{% endfor %}
+
     
  
