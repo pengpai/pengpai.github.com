@@ -2,4 +2,4 @@ markdown: rdiscount
 safe: true
 lsi: false
 pygments: true
-baseurl:/pengpai
+baseurl: /pengpai
