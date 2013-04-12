@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<head>   
+    	<meta name="viewport" content="width=device-width" />   
+	</head>   
+    <body>   
+        <h2><a id="applink1" href="aliexpress://profile/116201417">Open scheme(mtcmtc) defined in iPhone with parameters </a></h2>   
+        <p><i>Only works on iPhone!</i></p>      
+          
+        <script type="text/javascript">   
+            // To avoid the "protocol not supported" alert, fail must open another app.  
+            var appstore = "itms://itunes.apple.com/us/app/facebook/id284882215?mt=8&uo=6";  
+            function applink(fail){  
+                return function(){  
+                    var clickedAt = +new Date;  
+                    setTimeout(function(){  
+                              // To avoid failing on return to MobileSafari, ensure freshness!  
+                              if (+new Date - clickedAt < 500){  
+                              		window.location = fail;  
+                              }  
+                        }, 500);      
+                };  
+            }  
+            document.getElementById("applink1").onclick = applink(appstore);  
+            </script>   
+    </body>
+
+</html>
