@@ -10,13 +10,13 @@
           
         <script type="text/javascript">   
             // To avoid the "protocol not supported" alert, fail must open another app.  
-            var appstore = "itms://itunes.apple.com/us/app/facebook/id284882215?mt=8&uo=6";  
+            var appstore = "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=436672029";  
             function applink(fail){  
                 return function(){  
                     var clickedAt = +new Date;  
                     setTimeout(function(){  
                               // To avoid failing on return to MobileSafari, ensure freshness!  
-                              if (+new Date - clickedAt < 500){  
+                              if (+new Date - clickedAt < 2000){  
                               		window.location = fail;  
                               }  
                         }, 500);      
