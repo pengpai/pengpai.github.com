@@ -19,7 +19,6 @@ title: iOS开发笔记-cocoaPods
 	- 安装cocoaPods
 		
 			gem install cocoaPods
-		
 	 
 	
 2.	查找需要使用的类库
