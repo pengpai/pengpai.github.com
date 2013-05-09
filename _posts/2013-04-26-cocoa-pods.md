@@ -5,11 +5,11 @@ title: iOS开发笔记-cocoaPods
 ### iOS项目中的依赖管理工具-cocoaPods
 
 #### 背景介绍
-现在,每个iOS project或多或少都会用到些第三方类库,比如大家熟悉的ASIHttpRequest,JSONKit等.当使用到的类库变得较多的时候,就会出现些依赖管理上的问题,比如类库A和类库B都依赖了类库C,直接把A和B拖进项目的时候还要手动去掉C.还有依赖的版本的问题.
+现在,每个iOS project或多或少都会用到些第三方类库,比如大家熟悉的JSONKit,ASIHttpRequest等.当使用到的类库变得较多的时候,就会出现些依赖管理上的问题,比如循环依赖,版本控制等.
 
 对于这类问题,其他语言早已经有自己比较成熟的解决方式,比如对于Java的maven.
 
-那么,cocoaPods算是目前iOS平台上比较好用的一个
+那么,cocoaPods算是目前iOS平台上比较好用的一个.只要安裝好 CocoaPods，在自己的project项目里新建一份 Podfile 文件，在里面说明要使用哪些类库,什么版本等,剩下的一切都可以交给cocoaPods来搞定,过程相当轻松愉悦， 
 	
 #### 使用说明
 
@@ -51,13 +51,14 @@ title: iOS开发笔记-cocoaPods
 			pod update
 			
 	- project的相关配置
-		
-		若不配置的话,会出现库里的文件找不到的情况("symbol not found")
+	
+		- target -> build setting -> Search Path里.把cocoaPods的配置文件路径加进来		- 包括 LIBRARY_SEARCH_PATHS 和 USER_HEADER_SEARCH_PATHS 两个配置项,都要添加cocoaPods头文件配置的绝对路径
+		- 若不配置的话,会出现库里的文件找不到的情况("symbol not found")
 		
 		
 4.	自己的类库加入到cocoaPods仓库.
 
-	为自己的project添加一份specification即可.
+	1. 为自己的project添加一份specification即可
 	
 		Pod::Spec.new do |s|
   			s.name         = 'Reachability'
@@ -71,7 +72,8 @@ title: iOS开发笔记-cocoaPods
   			s.framework    = 'SystemConfiguration'
   			s.requires_arc = true
 		end
-		
+	
+	2. 在git上pull request,提交给cocoaPods团队审核
 		
  5.	官方文档
  
@@ -79,9 +81,12 @@ title: iOS开发笔记-cocoaPods
 
 	
 #### 使用感受
-优点不少,比如循环依赖的问题,依赖版本的问题等都能有效解决.
-另外,以后你的git或svn只需要一份Podfile就可以,不用再把那些开源的代码也加到代码库里来.
+优点不少,比如
+1. 循环依赖的问题可以有效解决.比如两个依赖到的类库本身也有依赖关系,cocoaPods可以帮你搞定
+2. 依赖版本的问题等都能有效解决.
+3. 以后你的git或svn只需要一份Podfile就可以,不用再把那些开源的代码也加到代码库里来.
+4. 与直接拉第三方工程进来相比,不需要自己手动把test类和exmple去掉.
 
 缺点呢,主要有二.
-一,对于我们自己有修改过的三方类库,比如ShareKit的config文件,是每个project个性化定制的,对于这类问题貌似还没有一个好的解决方法.
-二,依赖进来的个别第三方类库没有按照原有的项目包结构来组织,比如GPUImage.
+1. 对于我们自己有修改过的三方类库,比如ShareKit的config文件,是每个project个性化定制的,对于这类问题貌似还没有一个好的解决方法.
+2. 依赖进来的个别第三方类库没有按照原有的项目包结构来组织,比如GPUImage.
